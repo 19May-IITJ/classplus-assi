@@ -59,7 +59,9 @@ const SearchPage = () => {
     <>
       <div className="imagegrid-container">
         <Title className="heading">Search Photos</Title>
-        <SearchBar value={query} onChange={onChange} options={options} />
+        <div className="search-bar">
+          <SearchBar value={query} onChange={onChange} options={options} />
+        </div>
         <div className="imagegrid">
           <InfiniteScroll
             dataLength={photos.list}
