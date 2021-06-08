@@ -34,13 +34,13 @@ export const useFlickrAPI = () => {
     return promise;
   };
 
-  const fetchRecentData = () => {
-    const api = `${baseURL}&method=flickr.photos.getRecent&api_key=${api_key}`;
+  const fetchRecentData = (pageNo = 1, perPage = 20) => {
+    const api = `${baseURL}&method=flickr.photos.getRecent&per_page=${perPage}&page=${pageNo}&api_key=${api_key}`;
     return fetchData(api);
   };
 
-  const fetchQueryData = (query) => {
-    const api = `${baseURL}&method=flickr.photos.search&text=${query}&api_key=${api_key}`;
+  const fetchQueryData = (query, pageNo = 1, perPage = 20) => {
+    const api = `${baseURL}&method=flickr.photos.search&text=${query}&per_page=${perPage}&page=${pageNo}&api_key=${api_key}`;
     return fetchData(api);
   };
 

@@ -1,30 +1,23 @@
 import React from "react";
-import { Image, List } from "antd";
+import { Image } from "antd";
+import Loader from "../Loader/Loader";
+import "./ImageGrid.css";
 
-const ImageGrid = ({ imageList, className = "" }) => {
+const ImageGrid = ({ imageList, loading, className }) => {
   return (
-    <List
-      className={className}
-      grid={{
-        gutter: 16,
-        xs: 1,
-        sm: 2,
-        md: 4,
-        lg: 4,
-        xl: 6,
-        xxl: 3,
-      }}
-      dataSource={imageList}
-      renderItem={(image) => (
-        <List.Item>
+    <>
+      <div className="image-grid" style={{ marginTop: "30px" }}>
+        {imageList.map((image, index) => (
           <Image
+            key={`${image.farm}_${image.server}_${image.id}_${image.secret}_${index}`}
             // width={200}
             src={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
-            //   placeholder
+            placeholder
           />
-        </List.Item>
-      )}
-    />
+        ))}
+      </div>
+      {loading && <Loader />}
+    </>
   );
 };
 
