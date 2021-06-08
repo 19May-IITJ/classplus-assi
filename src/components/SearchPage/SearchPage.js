@@ -11,7 +11,7 @@ const { Title } = Typography;
 const SearchPage = () => {
   const [query, setQuery] = useState("");
   const { itemList: options, addItem } = useStoredOptions("OPTIONS");
-  const [imageListDefault, setImageListDefault] = useState([]);
+  // const [imageListDefault, setImageListDefault] = useState([]);
   const [imageList, setImageList] = useState([]);
   const { fetchRecentData, fetchQueryData } = useFlickrAPI();
 
@@ -19,18 +19,10 @@ const SearchPage = () => {
     if (val.length === 0)
       fetchRecentData().then((res) => setImageList(res.photo));
     else {
-      setQuery(val);
       addItem(val);
       fetchQueryData(val).then((res) => setImageList(res.photo));
     }
-  };
-
-  const updateInput = async (input) => {
-    const filtered = imageListDefault.filter((country) => {
-      return country.name.toLowerCase().includes(input.toLowerCase());
-    });
-    // setInput(input);
-    setImageList(filtered);
+    setQuery(val);
   };
 
   useEffect(() => {

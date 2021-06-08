@@ -15,14 +15,18 @@ export const useFlickrAPI = () => {
       setActivePromises([]);
     }
     const promise = new Promise(async (resolve, reject) => {
-      const response = await fetch(api, {
-        signal,
-      });
-      const data = await response.json();
-      if (data.stat === "ok") {
-        resolve(data.photos);
-      } else {
-        reject("API failed");
+      try {
+        const response = await fetch(api, {
+          signal,
+        });
+        const data = await response.json();
+        if (data.stat === "ok") {
+          resolve(data.photos);
+        } else {
+          reject("API failed");
+        }
+      } catch (e) {
+        console.log(e);
       }
     });
     promise.cancel = () => controller.abort();
