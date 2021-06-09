@@ -6,7 +6,7 @@ import "./ImageGrid.css";
 const ImageGrid = ({ imageList, loading, className }) => {
   return (
     <>
-      <div className="image-grid" style={{ marginTop: "30px" }}>
+      <div className="image-grid">
         {imageList.map((image, index) => (
           <Image
             key={`${image.farm}_${image.server}_${image.id}_${image.secret}_${index}`}

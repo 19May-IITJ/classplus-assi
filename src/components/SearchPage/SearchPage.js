@@ -25,7 +25,7 @@ const SearchPage = () => {
     setQuery(val);
     fetchAndUpdateData(val);
   };
-  
+
   const fetchData = (val, pageNo = 1, perPage = 20) => {
     if (!val || val.length === 0) return fetchRecentData(pageNo, perPage);
     else return fetchQueryData(val, pageNo, perPage);
@@ -58,9 +58,14 @@ const SearchPage = () => {
   return (
     <>
       <div className="imagegrid-container">
-        <Title className="heading">Search Photos</Title>
+        {/* <Title className="heading">Search Photos</Title> */}
         <div className="search-bar">
-          <SearchBar value={query} onChange={onChange} options={options} loading={loading}/>
+          <SearchBar
+            value={query}
+            onChange={onChange}
+            options={options}
+            loading={loading}
+          />
         </div>
         <div className="imagegrid">
           <InfiniteScroll
