@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SearchPage.css";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Typography } from "antd";
+import { Typography, Empty } from "antd";
 import Loader from "../Loader/Loader";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGrid from "../ImageGrid/ImageGrid";
@@ -9,7 +9,7 @@ import useStoredOptions from "../../hooks/useStoredOptions";
 import useFlickrAPI from "../../hooks/useFlickrAPI";
 const { Title } = Typography;
 
-const initPhotoState = { page: 1, pages: 10, list: [] };
+const initPhotoState = { page: 1, pages: 0, list: [] };
 
 const SearchPage = () => {
   const [query, setQuery] = useState("");
@@ -73,11 +73,15 @@ const SearchPage = () => {
             next={() => {
               fetchAndUpdateData(query, photos.page + 1);
             }}
-            hasMore={!loading && photos.page !== photos.pages}
+            hasMore={!loading && photos.page < photos.pages}
             loader={<Loader />}
           >
-            {!photos.list.length ? (
-              <Loader />
+            {photos.pages === 0 ? (
+              loading ? (
+                <Loader />
+              ) : (
+                <Empty description={'No results found'}/>
+              )
             ) : (
               <ImageGrid imageList={photos.list} loading={loading} />
             )}
