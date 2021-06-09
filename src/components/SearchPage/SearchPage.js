@@ -58,7 +58,7 @@ const SearchPage = () => {
   return (
     <>
       <div className="imagegrid-container">
-        {/* <Title className="heading">Search Photos</Title> */}
+        <Title className="heading">Search Photos</Title>
         <div className="search-bar">
           <SearchBar
             value={query}
