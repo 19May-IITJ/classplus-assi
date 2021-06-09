@@ -10,7 +10,7 @@ const ImageGrid = ({ imageList, loading, className }) => {
         {imageList.map((image, index) => (
           <Image
             key={`${image.farm}_${image.server}_${image.id}_${image.secret}_${index}`}
-            // width={200}
+            alt={image.title}
             src={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
             placeholder
           />
