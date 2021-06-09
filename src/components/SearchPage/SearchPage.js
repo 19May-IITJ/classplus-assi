@@ -19,15 +19,15 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
 
   const onChange = (val) => {
-    if (val.length > 0) addItem(val);
+    if (val && val.length > 0) addItem(val);
     setPhotos(initPhotoState);
     setLoading(true);
     setQuery(val);
     fetchAndUpdateData(val);
   };
-
+  
   const fetchData = (val, pageNo = 1, perPage = 20) => {
-    if (val.length === 0) return fetchRecentData(pageNo, perPage);
+    if (!val || val.length === 0) return fetchRecentData(pageNo, perPage);
     else return fetchQueryData(val, pageNo, perPage);
   };
 
@@ -37,11 +37,11 @@ const SearchPage = () => {
       fetchData(val, pageNo, perPage)
         .then((res) => {
           setLoading(false);
-          setPhotos({
+          setPhotos((photos) => ({
             page: res.page,
             pages: res.pages,
             list: [...photos.list, ...res.photo],
-          });
+          }));
           resolve(res);
         })
         .catch((e) => {

@@ -15,7 +15,7 @@ const SearchBar = ({ value, onChange, options }) => {
       style={{ width: 200 }}
       //   onSearch={onSearch}
       onChange={onChange}
-      // allowClear
+      allowClear
       suffixIcon={<SearchOutlined />}
       // showSearch
       autoFocus
