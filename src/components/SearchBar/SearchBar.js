@@ -1,7 +1,7 @@
 import React from "react";
-import { AutoComplete } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-const SearchBar = ({ value, onChange, options }) => {
+import { AutoComplete, Input } from "antd";
+
+const SearchBar = ({ value, onChange, options, loading }) => {
   const limitOptions = () => {
     return options
       .filter((option) => option.value.startsWith(value))
@@ -9,19 +9,18 @@ const SearchBar = ({ value, onChange, options }) => {
   };
 
   return (
-    <AutoComplete
-      value={value}
-      options={limitOptions()}
-      style={{ width: 200 }}
-      //   onSearch={onSearch}
-      onChange={onChange}
-      allowClear
-      suffixIcon={<SearchOutlined />}
-      // showSearch
-      autoFocus
-      // clearIcon
-      placeholder="Search photos..."
-    />
+    <AutoComplete options={limitOptions()} onChange={onChange} autoFocus>
+      <Input.Search
+        value={value}
+        allowClear
+        size="large"
+        // bordered={false}
+        placeholder="Search photos..."
+        // suffix={<SearchOutlined/>}
+        enterButton
+        loading={loading}
+      />
+    </AutoComplete>
   );
 };
 
