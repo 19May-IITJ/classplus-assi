@@ -53,6 +53,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     fetchAndUpdateData(query);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -80,7 +81,7 @@ const SearchPage = () => {
               loading ? (
                 <Loader />
               ) : (
-                <Empty description={'No results found'}/>
+                <Empty description={"No results found"} />
               )
             ) : (
               <ImageGrid imageList={photos.list} loading={loading} />
